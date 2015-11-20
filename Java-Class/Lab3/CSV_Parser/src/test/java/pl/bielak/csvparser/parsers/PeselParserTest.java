@@ -1,35 +1,35 @@
 package pl.bielak.csvparser.parsers;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
-import static org.junit.Assert.*;
+import static org.testng.Assert.*;
 import static pl.bielak.csvparser.parsers.PeselParser.*;
 
 public class PeselParserTest {
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test(expectedExceptions = IllegalArgumentException.class)
   public void shouldThrowExceptionForNull() {
-    isValid(null);
+    isValidPesel(null);
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test(expectedExceptions = IllegalArgumentException.class)
   public void shouldThrowExceptionForCharactersInInput() {
-    isValid("12312321iad");
+    isValidPesel("12312321iad");
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test(expectedExceptions = IllegalArgumentException.class)
   public void shouldThrowExceptionForTooShortInput() {
-    isValid("12");
+    isValidPesel("12");
   }
 
   @Test
   public void shouldReturnTrueForValidInput() {
-    assertTrue(isValid("91012507771"));
+    assertTrue(isValidPesel("91012507771"));
   }
 
   @Test
   public void shouldReturnFalseForInvalidInput() {
-    assertFalse(isValid("82062801652"));
+    assertFalse(isValidPesel("82062801652"));
   }
 
 }

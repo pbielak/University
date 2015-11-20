@@ -9,7 +9,7 @@ public class PeselParser {
 
   private static int[] weights = {1, 3, 7, 9, 1, 3, 7, 9, 1, 3};
 
-  public static boolean isValid(String pesel) {
+  public static boolean isValidPesel(String pesel) {
     if (pesel == null || !pesel.matches("[0-9]{11}")) {
       throw new IllegalArgumentException();
     }

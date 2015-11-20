@@ -9,6 +9,8 @@ import pl.bielak.csvparser.services.PeopleService;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import static pl.bielak.csvparser.parsers.EmailParser.isValidEmail;
+import static pl.bielak.csvparser.parsers.IpAdressParser.*;
 import static pl.bielak.csvparser.parsers.PeselParser.*;
 
 public class CSVParser {
@@ -30,9 +32,11 @@ public class CSVParser {
   private void parse() throws FileNotFoundException {
     for (Person person : peopleService.getPeople()) {
       String currentPesel = person.getPesel();
+      String currentEmail = person.getEmail();
+      String currentIpAddress = person.getIpAddress();
 
       try {
-        if (isValid(currentPesel)) {
+        if (isValidPesel(currentPesel) && isValidEmail(currentEmail) && isValidIpAdress(currentIpAddress)) {
           csvSaver.saveValidRecord(person.toString());
         } else {
           csvSaver.saveInvalidRecord(person.toString());
