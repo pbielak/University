@@ -1,0 +1,29 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+.mypoints {
+    text-align: right;
+    font-weight: bold;
+}
+
+.goodAnswer {
+    font-weight: bold;
+    color: green;
+}
+
+.badAnswer {
+    font-weight: bold;
+    color: red;
+}
+
+.finalpoints {
+    text-align: center;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.centered {
+    text-align: center;
+}

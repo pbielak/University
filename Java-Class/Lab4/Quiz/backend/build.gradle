@@ -1,0 +1,37 @@
+buildscript {
+    ext {
+        springBootVersion = '1.2.6.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+    configurations {
+        compile.exclude module: "spring-boot-starter-tomcat"
+    }
+}
+
+apply plugin: 'spring-boot'
+
+springBoot {
+    mainClass = "pl.bielak.quiz.backend.AppRunner"
+}
+
+dependencies {
+
+    // Spring stuff
+
+    compile(
+      ['org.springframework:spring-webmvc:4.2.1.RELEASE'],
+      ['org.springframework:spring-aspects:4.2.1.RELEASE'],
+      ["org.springframework.boot:spring-boot-starter-undertow"],
+      ["org.springframework.boot:spring-boot-starter-web"],
+      ["org.springframework.boot:spring-boot-starter-jersey"],
+      ["org.springframework.boot:spring-boot-starter-security"],
+      ["org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE"],
+      ["org.springframework.boot:spring-boot-starter-logging"])
+
+    compile 'org.springframework.boot:spring-boot-starter-data-mongodb:1.2.6.RELEASE'
+}

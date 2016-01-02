@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl" ng-app="quizApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz by Piotr Bielak</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-resource.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="static/js/app.js"></script>
+    <script src="static/js/controllers/QuestionController.js"></script>
+    <script src="static/js/services/QuestionService.js"></script>
+</head>
+<body ng-controller="MainController as mainCtrl">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/quiz/frontend/index.html">Quiz</a>
+        </div>
+    </div>
+</nav>
+
+<div ng-show="!mainCtrl.isQuizSet">
+
+    <div class="centered" ng-repeat="quiz in mainCtrl.quizzes">
+        <h4>{{quiz.quiz_name}}</h4>
+        <p>{{quiz.quiz_description}}</p>
+        <button type="button" ng-click="mainCtrl.setQuiz(quiz.quiz_id)">Rozwiąż!</button>
+    </div>
+</div>
+<div ng-show="mainCtrl.isQuizSet">
+    <div class="container theme-showcase" role="main">
+        <div class="jumbotron">
+
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                     ng-style="{width: (mainCtrl.getProgress() + '%')}">
+                    Pytanie: {{mainCtrl.currentQuestionIndex+1}} / {{mainCtrl.questions.length}}
+                </div>
+            </div>
+
+            <h2>{{mainCtrl.currentQuestionIndex + 1}}#
+                {{mainCtrl.questions[mainCtrl.currentQuestionIndex].question}}</h2>
+
+            <div class="form-group">
+                <div class="radio" ng-repeat="Answer in mainCtrl.questions[mainCtrl.currentQuestionIndex].answers">
+                    <label ng-class="{goodAnswer: mainCtrl.isCorrectAnswer(Answer.answer), badAnswer: mainCtrl.isBadAnswer(Answer.answer)}">
+                        <input type="radio" name="answer" value="{{Answer.answer}}" ng-model="mainCtrl.currentAnswer">
+                        {{Answer.answer}}
+                    </label>
+                </div>
+            </div>
+
+            <div class="centered">
+                <button type="button" class="btn btn-info btn-lg" ng-click="mainCtrl.checkQuestion()"
+                        ng-show="!mainCtrl.checkedCurrentQuestion">Sprawdź odpowiedź!
+                </button>
+                <button type="button" id="nextButton" class="btn btn-info btn-lg" ng-click="mainCtrl.getNextQuestion()"
+                        ng-show="mainCtrl.checkedCurrentQuestion">Następne pytanie!
+                </button>
+            </div>
+
+            <div class="mypoints">Masz aktualnie: {{mainCtrl.getScore()}}</div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal fade" role="dialog" data-backdrop="static">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Koniec Quizu!</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="finalpoints">Zdobyłeś: {{mainCtrl.getScore()}}</div>
+                </div>
+
+                <div class="modal-footer">
+                    <p>Odśwież stronę, aby rozwiązać quiz ponownie.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
