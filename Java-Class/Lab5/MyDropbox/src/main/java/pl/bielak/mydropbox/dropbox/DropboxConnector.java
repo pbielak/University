@@ -6,7 +6,7 @@ import pl.bielak.mydropbox.config.ConfigService;
 import static pl.bielak.mydropbox.config.Keys.DROPBOX_TOKEN_KEY;
 import static pl.bielak.mydropbox.config.Keys.PROPERTIES_FILE_PATH_KEY;
 
-public class CloudConnector {
+public class DropboxConnector {
   private static final String TOKEN;
   private static DbxClientV2 client;
 

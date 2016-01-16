@@ -1,11 +1,11 @@
 package pl.bielak.mydropbox.config;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class ConfigService {
-
+  private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
   private Properties properties;
 
   public ConfigService(String path){
@@ -13,7 +13,7 @@ public class ConfigService {
     try {
       properties.load(getClass().getClassLoader().getResourceAsStream(path));
     } catch (IOException e) {
-      throw new IllegalStateException("IOException", e);
+      LOGGER.warning("IOException: " + e.getMessage());
     }
   }
 
