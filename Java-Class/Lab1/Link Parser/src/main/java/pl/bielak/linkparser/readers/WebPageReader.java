@@ -1,12 +1,12 @@
 package pl.bielak.linkparser.readers;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import pl.bielak.linkparser.documents.HTMLDocument;
+import pl.bielak.linkparser.models.HTMLDocument;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.stream.Collectors;
 
 /**
  * @author Piotr Bielak
@@ -16,19 +16,12 @@ import java.net.URL;
 public class WebPageReader implements AbstractReader {
 
   private final String PATH_TO_FILE;
-  @Getter private HTMLDocument htmlDocument;
 
   @Override
-  public void loadPage() throws Exception {
-    htmlDocument = new HTMLDocument();
+  public HTMLDocument loadHTMLPage() throws Exception {
     URL url = new URL(PATH_TO_FILE);
     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
 
-    String line;
-    while ((line = bufferedReader.readLine()) != null) {
-      htmlDocument.addLine(line);
-    }
-
-    bufferedReader.close();
+    return new HTMLDocument(bufferedReader.lines().collect(Collectors.toList()));
   }
 }
