@@ -1,11 +1,10 @@
 package pl.bielak.linkparser.readers;
 
-import pl.bielak.linkparser.documents.HTMLDocument;
+import pl.bielak.linkparser.models.HTMLDocument;
 
 /**
  * @author Piotr Bielak
  */
 public interface AbstractReader {
-  void loadPage() throws Exception;
-  HTMLDocument getHtmlDocument();
+  HTMLDocument loadHTMLPage() throws Exception;
 }
