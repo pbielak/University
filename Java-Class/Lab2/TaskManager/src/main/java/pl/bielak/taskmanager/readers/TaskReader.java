@@ -1,15 +1,14 @@
-package pl.bielak.eventmanager.readers;
+package pl.bielak.taskmanager.readers;
 
-import pl.bielak.eventmanager.documents.Category;
-import pl.bielak.eventmanager.documents.Task;
-import pl.bielak.eventmanager.documents.TaskPriority;
-import pl.bielak.eventmanager.documents.TaskStage;
+import pl.bielak.taskmanager.models.Category;
+import pl.bielak.taskmanager.models.Task;
+import pl.bielak.taskmanager.models.TaskPriority;
+import pl.bielak.taskmanager.models.TaskStage;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;

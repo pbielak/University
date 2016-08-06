@@ -1,14 +1,14 @@
-package pl.bielak.eventmanager;
+package pl.bielak.taskmanager;
 
-import pl.bielak.eventmanager.configuration.AppConfiguration;
+import pl.bielak.taskmanager.configuration.AppConfiguration;
 
 public class TaskManagerRunner {
   private static final String PATH_TO_FILE = "config/config.properties";
 
   public static void main(String[] args) throws Exception {
     final AppConfiguration configuration = new AppConfiguration(PATH_TO_FILE);
-    final EventManager eventManager = new EventManager(configuration);
+    final TaskManager taskManager = new TaskManager(configuration);
 
-    eventManager.run();
+    taskManager.run();
   }
 }

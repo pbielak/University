@@ -1,12 +1,11 @@
-package pl.bielak.eventmanager.readers;
+package pl.bielak.taskmanager.readers;
 
 import com.google.common.io.Resources;
-import pl.bielak.eventmanager.documents.Category;
+import pl.bielak.taskmanager.models.Category;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

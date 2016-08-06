@@ -1,7 +1,7 @@
-package pl.bielak.eventmanager.savers;
+package pl.bielak.taskmanager.savers;
 
-import pl.bielak.eventmanager.documents.Category;
-import pl.bielak.eventmanager.documents.Task;
+import pl.bielak.taskmanager.models.Category;
+import pl.bielak.taskmanager.models.Task;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

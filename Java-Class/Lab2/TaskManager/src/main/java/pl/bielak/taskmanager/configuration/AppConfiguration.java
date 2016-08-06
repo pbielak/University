@@ -1,13 +1,13 @@
-package pl.bielak.eventmanager.configuration;
+package pl.bielak.taskmanager.configuration;
 
 import com.google.common.io.Resources;
-import pl.bielak.eventmanager.documents.Category;
+import pl.bielak.taskmanager.models.Category;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import static pl.bielak.eventmanager.configuration.Keys.*;
+import static pl.bielak.taskmanager.configuration.Keys.*;
 
 public class AppConfiguration {
 

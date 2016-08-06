@@ -1,4 +1,4 @@
-package pl.bielak.eventmanager.documents;
+package pl.bielak.taskmanager.models;
 
 public class Category {
   private String categoryName;

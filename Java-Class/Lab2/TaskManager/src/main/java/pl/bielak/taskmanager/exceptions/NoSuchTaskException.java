@@ -1,4 +1,4 @@
-package pl.bielak.eventmanager.exceptions;
+package pl.bielak.taskmanager.exceptions;
 
 public class NoSuchTaskException extends Exception {
   public NoSuchTaskException() {

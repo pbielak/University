@@ -1,4 +1,4 @@
-package pl.bielak.eventmanager.configuration;
+package pl.bielak.taskmanager.configuration;
 
 /**
  * @author Piotr Bielak

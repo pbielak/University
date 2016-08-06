@@ -1,30 +1,28 @@
-package pl.bielak.eventmanager;
+package pl.bielak.taskmanager;
 
-import pl.bielak.eventmanager.configuration.AppConfiguration;
-import pl.bielak.eventmanager.documents.Category;
-import pl.bielak.eventmanager.documents.Task;
-import pl.bielak.eventmanager.documents.TaskStage;
-import pl.bielak.eventmanager.exceptions.NoSuchCategoryException;
-import pl.bielak.eventmanager.exceptions.NoSuchTaskException;
-import pl.bielak.eventmanager.readers.CategoryReader;
-import pl.bielak.eventmanager.readers.TaskReader;
-import pl.bielak.eventmanager.savers.TaskSaver;
+import pl.bielak.taskmanager.configuration.AppConfiguration;
+import pl.bielak.taskmanager.models.Category;
+import pl.bielak.taskmanager.models.Task;
+import pl.bielak.taskmanager.models.TaskStage;
+import pl.bielak.taskmanager.exceptions.NoSuchCategoryException;
+import pl.bielak.taskmanager.exceptions.NoSuchTaskException;
+import pl.bielak.taskmanager.readers.CategoryReader;
+import pl.bielak.taskmanager.readers.TaskReader;
+import pl.bielak.taskmanager.savers.TaskSaver;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
-public class EventManager {
+public class TaskManager {
 
   private final AppConfiguration appConfiguration;
   private List<Category> defaultCategories = CategoryReader.readCategories();
   private Map<Category, List<Task>> tasks = TaskReader.readTasks();
 
-  public EventManager(AppConfiguration appConfiguration) throws IOException {
+  public TaskManager(AppConfiguration appConfiguration) throws IOException {
     this.appConfiguration = appConfiguration;
   }
 

@@ -1,4 +1,4 @@
-package pl.bielak.eventmanager.documents;
+package pl.bielak.taskmanager.models;
 
 public class Task implements Comparable {
   private int ID;
