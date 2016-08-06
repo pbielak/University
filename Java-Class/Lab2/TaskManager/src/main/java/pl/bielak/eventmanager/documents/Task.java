@@ -1,19 +1,22 @@
 package pl.bielak.eventmanager.documents;
 
-public class Event implements Comparable{
+public class Task implements Comparable {
   private int ID;
   private String name;
   private String description;
-  private Priorities priority;
-  private TaskStages stage;
+  private TaskPriority priority;
+  private TaskStage stage;
   private boolean shouldBeRemoved;
+  private Category category;
 
-  public Event(int id, String name, String description, Priorities priority, TaskStages stage) {
+  public Task(int id, String name, String description, TaskPriority priority, TaskStage stage, Category category) {
     this.ID = id;
     this.name = name;
     this.description = description;
     this.priority = priority;
     this.stage = stage;
+    this.category = category;
+
     this.shouldBeRemoved = false;
   }
 
@@ -25,43 +28,35 @@ public class Event implements Comparable{
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public Priorities getPriority() {
+  public TaskPriority getPriority() {
     return priority;
   }
 
-  public void setPriority(Priorities priority) {
-    this.priority = priority;
-  }
-
-  public TaskStages getStage() {
+  public TaskStage getStage() {
     return stage;
   }
 
-  public void setStage(TaskStages stage) {
+  public Category getCategory() {
+    return category;
+  }
+
+  public void updateStage(TaskStage stage) {
     this.stage = stage;
   }
 
   public boolean isUnfinished() {
-    return (stage != TaskStages.DONE);
+    return stage != TaskStage.DONE;
   }
 
-  public void setRemovingStatus() {
+  public void markAsToBeRemoved() {
     this.shouldBeRemoved = true;
   }
 
-  public boolean getRemovingStatus() {
+  public boolean shouldBeRemoved() {
     return shouldBeRemoved;
   }
 
@@ -72,7 +67,7 @@ public class Event implements Comparable{
 
   @Override
   public int compareTo(Object o) {
-    Priorities otherPriority = ((Event) o).getPriority();
+    TaskPriority otherPriority = ((Task) o).getPriority();
     return priority.compareTo(otherPriority);
   }
 }

@@ -1,5 +1,5 @@
 package pl.bielak.eventmanager.documents;
 
-public enum TaskStages {
+public enum TaskStage {
   TODO, IN_PROGRESS, DONE
 }

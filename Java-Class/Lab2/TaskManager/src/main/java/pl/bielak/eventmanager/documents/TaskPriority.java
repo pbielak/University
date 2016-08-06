@@ -1,5 +1,5 @@
 package pl.bielak.eventmanager.documents;
 
-public enum Priorities {
+public enum TaskPriority {
   HIGH, NORMAL, LOW
 }
