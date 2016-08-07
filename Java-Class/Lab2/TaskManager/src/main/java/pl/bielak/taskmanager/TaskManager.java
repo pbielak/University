@@ -22,13 +22,13 @@ public class TaskManager {
   private List<Category> defaultCategories = CategoryReader.readCategories();
   private Map<Category, List<Task>> tasks = TaskReader.readTasks();
 
-  public TaskManager(AppConfiguration appConfiguration) throws IOException {
+  public TaskManager(AppConfiguration appConfiguration) {
     this.appConfiguration = appConfiguration;
   }
 
   public void run() throws NoSuchCategoryException, NoSuchTaskException {
 
-    if(appConfiguration.shouldShowCategories()) {
+    if (appConfiguration.shouldShowCategories()) {
       showAllCategories();
     }
 
@@ -38,7 +38,7 @@ public class TaskManager {
 
     finishTask(appConfiguration.getFinishedTaskId());
 
-    if(appConfiguration.shouldShowUnfinishedTasks()) {
+    if (appConfiguration.shouldShowUnfinishedTasks()) {
       showAllUnfinishedTasks();
     }
   }
@@ -56,26 +56,18 @@ public class TaskManager {
     tasks.get(category).stream().sorted().forEach(System.out::println);
   }
 
-  private void removeTask(int taskID) {
-    try {
-      processTask(taskID, Task::markAsToBeRemoved);
-    } catch (NoSuchTaskException e) {
-      throw new RuntimeException("An error occurred while removing task: " + e.getMessage());
-    }
+  private void removeTask(int taskID) throws NoSuchTaskException {
+    processTask(taskID, Task::markAsToBeRemoved);
   }
 
-  private void finishTask(int taskID) {
-    try {
-      processTask(taskID, task-> task.updateStage(TaskStage.DONE));
-    } catch (NoSuchTaskException e) {
-      throw new RuntimeException("An error occurred while finishing task: " + e.getMessage());
-    }
+  private void finishTask(int taskID) throws NoSuchTaskException {
+    processTask(taskID, task -> task.updateStage(TaskStage.DONE));
   }
 
   private void processTask(int taskID, Consumer<Task> consumer) throws NoSuchTaskException {
     Optional<Task> task = findTaskByID(taskID);
 
-    if(task.isPresent()) {
+    if (task.isPresent()) {
       consumer.accept(task.get());
       TaskSaver.saveTasks(tasks);
     } else {
