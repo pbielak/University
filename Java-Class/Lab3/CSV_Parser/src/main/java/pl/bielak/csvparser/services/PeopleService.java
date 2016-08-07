@@ -1,36 +1,33 @@
 package pl.bielak.csvparser.services;
 
-import pl.bielak.csvparser.documents.Person;
+import com.google.common.io.Resources;
+import pl.bielak.csvparser.configuration.AppConfiguration;
+import pl.bielak.csvparser.models.Person;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 public class PeopleService {
-  private List<Person> people = new ArrayList<>();
+  private final AppConfiguration appConfiguration;
 
-  public PeopleService(String fileName) throws IOException {
-    readAllPeopleFromFile(fileName);
+  public PeopleService(final AppConfiguration appConfiguration) {
+    this.appConfiguration = appConfiguration;
   }
 
   public List<Person> getPeople() {
-    return people;
-  }
-
-  private void readAllPeopleFromFile(String fileName) throws IOException {
-    Set<Person> personSet = new HashSet<>();
-    BufferedReader reader = new BufferedReader(new FileReader(fileName));
-    String line;
-
-    while(((line = reader.readLine()) != null)) {
-      String[] info = line.split(",");
-      personSet.add(new Person(info[0],info[1],info[2],info[3],info[4],info[5]));
+    final String inputFilename = appConfiguration.getInputFilename();
+    try (BufferedReader reader = Files.newBufferedReader(Paths.get(Resources.getResource(inputFilename).getPath()))) {
+      return reader.lines()
+          .map(line -> line.split(","))
+          .map(values -> new Person(values[0], values[1], values[2], values[3], values[4], values[5]))
+          .distinct()
+          .collect(Collectors.toList());
+    } catch (IOException e) {
+      throw new RuntimeException("An error occurred while reading people from file:" + e.getMessage());
     }
-
-    people = new ArrayList<>(personSet);
   }
 }

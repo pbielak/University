@@ -4,13 +4,13 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
-import static pl.bielak.csvparser.parsers.IpAdressParser.*;
+import static pl.bielak.csvparser.parsers.IpAddressParser.*;
 
-public class IpAdressParserTest {
+public class IpAddressParserTest {
 
   @Test(expectedExceptions = IllegalArgumentException.class)
   public void shouldThrowExceptionForNull() {
-    isValidIpAdress(null);
+    isValidIpAddress(null);
   }
 
   @DataProvider
@@ -22,7 +22,7 @@ public class IpAdressParserTest {
 
   @Test(dataProvider = "validIpAddressProvider")
   public void shouldReturnTrueForValidIp(String ip) {
-    assertTrue(isValidIpAdress(ip));
+    assertTrue(isValidIpAddress(ip));
   }
 
   @DataProvider
@@ -34,7 +34,7 @@ public class IpAdressParserTest {
 
   @Test(dataProvider = "invalidIpAddressProvider")
   public void shouldReturnFalseForInvalidIp(String ip) {
-    assertFalse(isValidIpAdress(ip));
+    assertFalse(isValidIpAddress(ip));
   }
 
 }

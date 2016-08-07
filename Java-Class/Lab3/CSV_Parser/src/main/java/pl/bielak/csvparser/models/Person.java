@@ -1,4 +1,4 @@
-package pl.bielak.csvparser.documents;
+package pl.bielak.csvparser.models;
 
 public class Person {
   private String pesel;

@@ -1,7 +1,7 @@
 package pl.bielak.csvparser.parsers;
 
-public class IpAdressParser {
-  public static boolean isValidIpAdress(String ip) {
+public class IpAddressParser {
+  public static boolean isValidIpAddress(String ip) {
     if(ip == null) {
       throw new IllegalArgumentException();
     }
